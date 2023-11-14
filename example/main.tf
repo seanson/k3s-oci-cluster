@@ -5,6 +5,7 @@ variable "fingerprint" {}
 variable "private_key_path" {}
 variable "availability_domain" {}
 variable "my_public_ip_cidr" {}
+variable "public_key_path" {}
 variable "cluster_name" {}
 variable "os_image_id" {}
 variable "certmanager_email_address" {}
@@ -19,20 +20,19 @@ variable "k3s_extra_worker_node" {
   default = true
 }
 variable "expose_kubeapi" {
-  default = false
+  default = true
 }
 variable "environment" {
   default = "staging"
 }
 
 module "k3s_cluster" {
-  # k3s_version               = "v1.23.8+k3s2" # Fix kubectl exec failure
-  # k3s_version               = "v1.24.4+k3s1" # Kubernetes version compatible with longhorn
   region                    = var.region
   availability_domain       = var.availability_domain
   tenancy_ocid              = var.tenancy_ocid
   compartment_ocid          = var.compartment_ocid
   my_public_ip_cidr         = var.my_public_ip_cidr
+  public_key_path           = pathexpand(var.public_key_path)
   cluster_name              = var.cluster_name
   environment               = var.environment
   os_image_id               = var.os_image_id
@@ -41,7 +41,6 @@ module "k3s_cluster" {
   k3s_worker_pool_size      = var.k3s_worker_pool_size
   k3s_extra_worker_node     = var.k3s_extra_worker_node
   expose_kubeapi            = var.expose_kubeapi
-  ingress_controller        = "nginx"
   source                    = "../"
 }
 
