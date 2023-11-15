@@ -5,7 +5,7 @@ variable "fingerprint" {}
 variable "private_key" {}
 variable "availability_domain" {}
 variable "my_public_ip_cidr" {}
-variable "public_key_path" {}
+variable "public_key" {}
 variable "cluster_name" {}
 variable "os_image_id" {}
 variable "certmanager_email_address" {}
