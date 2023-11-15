@@ -2,7 +2,7 @@ variable "compartment_ocid" {}
 variable "tenancy_ocid" {}
 variable "user_ocid" {}
 variable "fingerprint" {}
-variable "private_key_path" {}
+variable "private_key" {}
 variable "availability_domain" {}
 variable "my_public_ip_cidr" {}
 variable "public_key_path" {}
@@ -32,7 +32,7 @@ module "k3s_cluster" {
   tenancy_ocid              = var.tenancy_ocid
   compartment_ocid          = var.compartment_ocid
   my_public_ip_cidr         = var.my_public_ip_cidr
-  public_key_path           = pathexpand(var.public_key_path)
+  public_key                = var.public_key
   cluster_name              = var.cluster_name
   environment               = var.environment
   os_image_id               = var.os_image_id
