@@ -31,7 +31,7 @@ module "k3s_cluster" {
   availability_domain       = var.availability_domain
   tenancy_ocid              = var.tenancy_ocid
   compartment_ocid          = var.compartment_ocid
-  my_public_ip_cidr         = var.my_public_ip_cidr
+  my_public_ip_cidrs        = var.my_public_ip_cidrs
   public_key                = var.public_key
   cluster_name              = var.cluster_name
   environment               = var.environment

@@ -147,7 +147,7 @@ module "k3s_cluster" {
   availability_domain       = var.availability_domain
   tenancy_ocid              = var.tenancy_ocid
   compartment_ocid          = var.compartment_ocid
-  my_public_ip_cidr         = var.my_public_ip_cidr
+  my_public_ip_cidrs        = var.my_public_ip_cidrs
   cluster_name              = var.cluster_name
   public_key                = var.public_key
   environment               = "staging"
