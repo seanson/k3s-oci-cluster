@@ -158,9 +158,9 @@ variable "unique_tag_value" {
   default = "https://github.com/garutilorenzo/k3s-oci-cluster"
 }
 
-variable "my_public_ip_cidr" {
-  type        = string
-  description = "My public ip CIDR"
+variable "my_public_ip_cidrs" {
+  type        = list(string)
+  description = "My public ip CIDRs"
 }
 
 variable "istio_release" {
@@ -178,7 +178,7 @@ variable "ingress_controller" {
   default = "default"
   validation {
     condition     = contains(["default", "nginx", "traefik2", "istio"], var.ingress_controller)
-    error_message = "Supported ingress controllers are: default, nginx, traefik2, istio"
+    error_message = "Supported ingress controllers are: default, nginx, traefik2, istio."
   }
 }
 

@@ -8,23 +8,26 @@ resource "oci_core_default_security_list" "default_security_list" {
     protocol    = "all"
   }
 
-  ingress_security_rules {
-    protocol = 1 # icmp
-    source   = var.my_public_ip_cidr
-
-    description = "Allow icmp from  ${var.my_public_ip_cidr}"
-
+  dynamic "ingress_security_rules" {
+    for_each = var.my_public_ip_cidrs
+    content {
+      protocol    = 1 # icmp
+      source      = ingress_security_rules.value
+      description = "Allow icmp from  ${ingress_security_rules.value}"
+    }
   }
 
-  ingress_security_rules {
-    protocol = 6 # tcp
-    source   = var.my_public_ip_cidr
+  dynamic "ingress_security_rules" {
+    for_each = var.my_public_ip_cidrs
+    content {
+      protocol    = 6 # tcp
+      source      = ingress_security_rules.value
+      description = "Allow SSH from ${ingress_security_rules.value}"
 
-    description = "Allow SSH from ${var.my_public_ip_cidr}"
-
-    tcp_options {
-      min = 22
-      max = 22
+      tcp_options {
+        min = 22
+        max = 22
+      }
     }
   }
 

@@ -4,7 +4,7 @@ variable "user_ocid" {}
 variable "fingerprint" {}
 variable "private_key" {}
 variable "availability_domain" {}
-variable "my_public_ip_cidr" {}
+variable "my_public_ip_cidrs" {}
 variable "public_key" {}
 variable "cluster_name" {}
 variable "os_image_id" {}
